@@ -1,4 +1,4 @@
-from app import db
+from dshbrd.database import db
 from flask.ext.security import UserMixin, RoleMixin
 
 roles_users = db.Table(

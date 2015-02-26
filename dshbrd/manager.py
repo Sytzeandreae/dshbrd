@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+
+from flask.ext.restful import Resource
+from dshbrd.extensions import flask_api
+from dshbrd.api.views import UserApi
+
+
+class BlockManager(object):
+    def __init__(self, app, api):
+        self.app = app
+        self._register_blocks()
+        flask_api.add_resource(UserApi, '/users')
+        print flask_api
+
+    def _register_blocks(self):
+        for name in self.app.config['REGISTERED_BLOCKS']:
+            block = self._block_object(name)
+            if block:
+                self.register(block, name)
+
+    def _block_object(self, name):
+        try:
+            mod = __import__('dshbrd.block.{0}.views'.format(name),
+                             fromlist=[name])
+            return getattr(mod, 'BlockApi')
+        except AttributeError:
+            return None
+        except ImportError:
+            return None
+
+    def register(self, block, name):
+        if isinstance(block(), Resource):
+            flask_api.add_resource(block, '/block/{0}'.format(name))
+        else:
+            raise TypeError('Block must be subclass of Block: {0}'.format(name))

@@ -14,6 +14,12 @@ class Config(object):
 
     SECRET_KEY = 'insert secret key here'
 
+    REGISTERED_BLOCKS = [
+        'reddit',
+        'rss',
+        'newrelic'
+    ]
+
 
 class DevConfig(Config):
     DEBUG = True

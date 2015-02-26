@@ -2,13 +2,14 @@
 
 import os
 from flask import Flask
+from flask.ext.security import SQLAlchemyUserDatastore
 
-from dshbrd.extensions import api, users, create_api, \
-    create_sql_alchemy_datastore, security
+from dshbrd.extensions import flask_api, security
 from dshbrd.database import db
 from dshbrd.auth import auth
 from dshbrd.auth.models import User, Role
 from dshbrd.api import api_v1_bp
+from dshbrd.manager import BlockManager
 
 
 def create_app():
@@ -19,6 +20,9 @@ def create_app():
     register_extensions(app)
     register_blueprints(app)
 
+    BlockManager(app, flask_api)
+    print flask_api.resources
+
     @app.route('/')
     def index():
         return 'hello_world'
@@ -28,8 +32,8 @@ def create_app():
 
 def register_extensions(app):
     db.init_app(app)
-    create_api(api, api_v1_bp)
-    create_sql_alchemy_datastore(users, db, User, Role)
+    flask_api.init_app(api_v1_bp)
+    users = SQLAlchemyUserDatastore(db, User, Role)
     security.init_app(app, users)
 
 

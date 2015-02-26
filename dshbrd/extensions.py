@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from flask.ext.restful import Api
 flask_api = Api()
 

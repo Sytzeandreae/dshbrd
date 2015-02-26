@@ -3,7 +3,7 @@
 from flask.ext.restful import Resource
 
 
-class BlockApi(Resource):
+class RedditBlockApi(Resource):
     def get(self):
         return {
             'hello': 'reddit'

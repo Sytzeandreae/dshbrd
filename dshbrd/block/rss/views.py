@@ -3,6 +3,6 @@
 from flask.ext.restful import Resource
 
 
-class BlockApi(Resource):
+class RssBlockApi(Resource):
     def get(self):
         return {'hello': 'rss'}

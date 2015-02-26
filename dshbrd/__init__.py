@@ -6,10 +6,14 @@ from flask.ext.security import SQLAlchemyUserDatastore
 
 from dshbrd.extensions import flask_api, security
 from dshbrd.database import db
-from dshbrd.auth import auth
+from dshbrd.admin import admin_bp
+from dshbrd.auth import auth_bp
 from dshbrd.auth.models import User, Role
 from dshbrd.api import api_v1_bp
 from dshbrd.manager import BlockManager
+from dshbrd.profile import profile_bp
+
+users = SQLAlchemyUserDatastore(db, User, Role)
 
 
 def create_app():
@@ -18,14 +22,8 @@ def create_app():
     app.config.from_object('config.{env}Config'.format(env=env))
 
     register_extensions(app)
+    BlockManager(app)
     register_blueprints(app)
-
-    BlockManager(app, flask_api)
-    print flask_api.resources
-
-    @app.route('/')
-    def index():
-        return 'hello_world'
 
     return app
 
@@ -33,10 +31,11 @@ def create_app():
 def register_extensions(app):
     db.init_app(app)
     flask_api.init_app(api_v1_bp)
-    users = SQLAlchemyUserDatastore(db, User, Role)
     security.init_app(app, users)
 
 
 def register_blueprints(app):
-    app.register_blueprint(auth)
+    app.register_blueprint(admin_bp)
+    app.register_blueprint(auth_bp)
     app.register_blueprint(api_v1_bp)
+    app.register_blueprint(profile_bp)

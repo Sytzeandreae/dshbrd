@@ -6,11 +6,10 @@ from dshbrd.api.views import UserApi
 
 
 class BlockManager(object):
-    def __init__(self, app, api):
+    def __init__(self, app):
         self.app = app
         self._register_blocks()
         flask_api.add_resource(UserApi, '/users')
-        print flask_api
 
     def _register_blocks(self):
         for name in self.app.config['REGISTERED_BLOCKS']:
@@ -22,7 +21,7 @@ class BlockManager(object):
         try:
             mod = __import__('dshbrd.block.{0}.views'.format(name),
                              fromlist=[name])
-            return getattr(mod, 'BlockApi')
+            return getattr(mod, '{0}BlockApi'.format(name.capitalize()))
         except AttributeError:
             return None
         except ImportError:

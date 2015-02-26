@@ -53,3 +53,15 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Database
+*.sqlite
+
+# Node modules
+
+# compiled js files
+bundle.js
+bundle.min.js
+
+# swap files
+*.swp

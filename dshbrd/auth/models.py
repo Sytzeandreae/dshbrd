@@ -33,3 +33,10 @@ class User(db.Model, UserMixin):
     @property
     def verbose_roles(self):
         return ', '.join(role.name for role in self.roles)
+
+    @classmethod
+    def get_by_id(cls, id):
+        if any((isinstance(id, basestring) and id.isdigit(),
+                isinstance(id, (int, float))),):
+            return cls.query.get(int(id))
+        return None

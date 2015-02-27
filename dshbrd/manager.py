@@ -2,14 +2,12 @@
 
 from flask.ext.restful import Resource
 from dshbrd.extensions import flask_api
-from dshbrd.api.views import UserApi
 
 
-class BlockManager(object):
+class BlockApiManager(object):
     def __init__(self, app):
         self.app = app
         self._register_blocks()
-        flask_api.add_resource(UserApi, '/users')
 
     def _register_blocks(self):
         for name in self.app.config['REGISTERED_BLOCKS']:
@@ -19,7 +17,7 @@ class BlockManager(object):
 
     def _block_object(self, name):
         try:
-            mod = __import__('dshbrd.block.{0}.views'.format(name),
+            mod = __import__('dshbrd.api.block.{0}.views'.format(name),
                              fromlist=[name])
             return getattr(mod, '{0}BlockApi'.format(name.capitalize()))
         except AttributeError:

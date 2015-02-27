@@ -10,7 +10,7 @@ from dshbrd.admin import admin_bp
 from dshbrd.auth import auth_bp
 from dshbrd.auth.models import User, Role
 from dshbrd.api import api_v1_bp
-from dshbrd.manager import BlockManager
+from dshbrd.manager import BlockApiManager
 from dshbrd.profile import profile_bp
 
 users = SQLAlchemyUserDatastore(db, User, Role)
@@ -22,7 +22,7 @@ def create_app():
     app.config.from_object('config.{env}Config'.format(env=env))
 
     register_extensions(app)
-    BlockManager(app)
+    BlockApiManager(app)
     register_blueprints(app)
 
     return app

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy.ext.declarative import declared_attr
+
 db = SQLAlchemy()
 
 
@@ -8,6 +10,10 @@ class CRUDMixin(object):
     __table_args__ = {'extend_existing': True}
 
     id = db.Column(db.Integer, primary_key=True)
+
+    @declared_attr
+    def __tablename__(cls):
+        return cls.__name__.lower()
 
     @classmethod
     def get_by_id(cls, id):

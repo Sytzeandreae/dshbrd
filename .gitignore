@@ -58,6 +58,7 @@ target/
 *.sqlite
 
 # Node modules
+node_modules/
 
 # compiled js files
 bundle.js

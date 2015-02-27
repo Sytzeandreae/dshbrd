@@ -19,6 +19,7 @@ def resetdb(noinput=False):
     dropdb()
     initdb()
     initauth(noinput)
+    initblocks()
 
 
 def request_input(question, default=None):
@@ -57,6 +58,15 @@ def initauth(noinput):
     print("Created user {0}".format(email))
 
 
+def initblocks():
+    from dshbrd.api.block.models import Block
+    from dshbrd.api.block.rss.models import RssBlock
+
+    Block.create(name='rss', blocktype='rss', user_id=1, position=1)
+    RssBlock.create(block_id=1, feed_url='http://google.com')
+
+
 def createdb(noinput=False):
     initdb()
     initauth(noinput)
+    initblocks()

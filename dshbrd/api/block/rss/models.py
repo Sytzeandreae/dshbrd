@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from dshbrd.block.models import BaseBlockModel
+from dshbrd.api.block.models import BaseBlockModel
 from dshbrd.database import db
 
 

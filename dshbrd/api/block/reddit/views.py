@@ -2,9 +2,14 @@
 
 from flask.ext.restful import Resource
 
+from .models import RedditBlock
+
 
 class RedditBlockApi(Resource):
     def get(self):
+        block = RedditBlock.get_by_id(id)
         return {
-            'hello': 'reddit'
+            'subreddit': block.subreddit,
+            'name': block.block.name,
+            'position': block.block.position
         }

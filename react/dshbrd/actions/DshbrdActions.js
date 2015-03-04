@@ -9,3 +9,5 @@ var DshbrdActions = {
         });    
     }  
 };
+
+module.exports = DshbrdActions;

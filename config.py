@@ -26,6 +26,9 @@ class DevConfig(Config):
 
 
 class StagingConfig(Config):
+    '''
+    Config for staging.dshbrd.io
+    '''
     DEBUG = True
 
     SQLALCHEMY_DATABASE_URI = \

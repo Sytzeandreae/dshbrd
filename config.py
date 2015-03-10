@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from os import path
+from os import environ, path
 
 
 class Config(object):
@@ -23,3 +23,16 @@ class Config(object):
 
 class DevConfig(Config):
     DEBUG = True
+
+
+class StagingConfig(Config):
+    DEBUG = True
+
+    SQLALCHEMY_DATABASE_URI = \
+        '{engine}://{username}:{password}@{host}/{db}'.format(
+            engine=environ.get('DB_ENGINE'),
+            username=environ.get('DB_USER'),
+            password=environ.get('DB_PASS'),
+            host=environ.get('DB_HOST'),
+            db=environ.get('DB_NAME')
+        )

@@ -20,6 +20,7 @@ def create_app():
     app = Flask(__name__)
     env = os.environ.get('DSHBRD_CONFIG', 'Dev')
     app.config.from_object('config.{env}Config'.format(env=env))
+    app.secret_key = app.config['SECRET_KEY']
 
     register_extensions(app)
     BlockApiManager(app)

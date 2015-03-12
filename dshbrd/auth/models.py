@@ -15,6 +15,7 @@ class Role(db.Model, RoleMixin):
 
 
 class User(db.Model, UserMixin):
+    __table_name__ = 'users'
     id = db.Column(db.Integer(), primary_key=True)
     email = db.Column(db.String(255), unique=True)
     display_name = db.Column(db.String(255), unique=True)

@@ -16,8 +16,8 @@ var RssStore = _.extend({}, EventEmitter.prototype, {
         return _data; 
     },
 
-    fetchData: function() {
-        RssApi.fetchData(); 
+    fetchData: function(id) {
+        RssApi.getData(id); 
     },
 
     emitChange: function() {

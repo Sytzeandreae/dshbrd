@@ -8,6 +8,8 @@ from dshbrd.api.block.models import Block
 from dshbrd.extensions import flask_api
 from dshbrd.api.views import AuthResource
 
+from dshbrd.api.block.rss.views import RssBlockApi
+
 
 class UserBlockApi(AuthResource):
     _loaded_models = {}

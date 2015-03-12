@@ -63,7 +63,7 @@ def initblocks():
     from dshbrd.api.block.rss.models import RssBlock
 
     Block.create(name='rss', blocktype='rss', user_id=1, position=1)
-    RssBlock.create(block_id=1, feed_url='http://google.com')
+    RssBlock.create(block_id=1, feed_url='https://news.ycombinator.com/rss')
 
 
 def createdb(noinput=False):

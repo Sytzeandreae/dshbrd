@@ -27,6 +27,6 @@ class BlockApiManager(object):
 
     def register(self, block, name):
         if isinstance(block(), Resource):
-            flask_api.add_resource(block, '/block/{0}'.format(name))
+            flask_api.add_resource(block, '/block/{0}/<int:id>'.format(name))
         else:
             raise TypeError('Block must be subclass of Block: {0}'.format(name))

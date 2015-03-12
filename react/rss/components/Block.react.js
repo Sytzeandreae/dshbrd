@@ -19,10 +19,10 @@ var SubBlock = React.createClass({
         }
     },
 
-    _renderEdit: function() {},
-    _renderNormal: function() {},
+    _renderEdit: function() {return <div />},
+    _renderNormal: function() {return <div />},
     _fetchData: function() {
-        RssStore.fetchData(this.props.block_specifics.url);
+        RssStore.fetchData(this.props.block_specifics.id);
     },
 
     _onChange: function() {

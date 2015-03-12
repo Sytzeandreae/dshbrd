@@ -24,11 +24,19 @@ var DshbrdApp = React.createClass({
     },
 
     render: function() {
-        return (
-            this.state.blocks.map(function(block, index) {
-                return (<Block key={index} block={block} />)
-            }) 
-        )
+        if (this.state.blocks.length > 0) {
+            console.log(this.state.blocks);
+            return (
+                <div>
+                    {this.state.blocks.map(function(block, index) {
+                        console.log(block);
+                        return (<Block key={index} block={block} />)
+                    })}
+                </div> 
+            )
+        } else {
+            return <div />
+        }
     },
 
     _onChange: function() {

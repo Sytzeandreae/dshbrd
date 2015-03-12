@@ -13,11 +13,10 @@ var Block = React.createClass({
     },
 
     render: function() {
-        var SubBlock = require('../../' + this.props.block.blocktype + '/components/Block.react');
+        var SubBlock = require('../../' + this.props.block.block_type + '/components/Block.react');
         return (
             <div>
                 <h3>{this.props.block.name}</h3>
-                <EditButton onClick={this._edit} edit={this.state.edit}/>
                 <SubBlock block_specifics={this.props.block.block_specifics} edit={this.state.edit} />
             </div>
         )

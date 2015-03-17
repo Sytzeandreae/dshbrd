@@ -2,7 +2,6 @@ var React = require('react');
 
 var Item = React.createClass({
     render: function() {
-        console.log(this.props.item);
         return (
             <div>
                 <a href={this.props.item.link}>

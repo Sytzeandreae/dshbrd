@@ -5,4 +5,4 @@ from dshbrd.database import db
 
 
 class XkcdBlock(BaseBlockModel, db.Model):
-    pass
+    url = 'http://www.xkcd.com/rss/xml'

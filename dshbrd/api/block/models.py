@@ -30,6 +30,6 @@ class BaseBlockModel(CRUDMixin):
         return db.relationship('Block')
 
     @classmethod
-    def check_user(cls, block_id, user_id):
-        block = cls.query.filter_by(bock_id=block_id)[0]
-        return block.user_id == user_id
+    def check_user(cls, id, user_id):
+        block = cls.get_by_id(id)
+        return block.block.user_id == user_id

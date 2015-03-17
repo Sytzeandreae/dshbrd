@@ -13,20 +13,24 @@ var SubBlock = React.createClass({
     componentWillMount: function() {console.log('mounted');},
 
     componentDidMount: function() {
-        $.get('http://127.0.0.1:5000/api/v1/xkcd/2', function(result) {
-            if (this.isMounted()) {
-                this.setState({
-                    'xkcd': result
-                });
-            }
-        }.bind(this));
-        //XkcdStore.addChangeListener(this._onChange);
+        $.get(
+            'http://127.0.0.1:5000/api/v1/block/xkcd/' + this.props.block_specifics.id, 
+            function(result) {
+                if (this.isMounted()) {
+                    this.setState({
+                        'xkcd': result
+                    });
+                }
+            }.bind(this));
+        XkcdStore.addChangeListener(this._onChange);
     },
 
     componentWillUnmount: function() {
-        //XkcdStore.removeChangeListener(this._onChange);
+        XkcdStore.removeChangeListener(this._onChange);
     },
-    render: function() {return (<div/>)},
+    render: function() {
+        return <div dangerouslySetInnerHTML={{__html: this.state.xkcd.description}} />
+    },
 
     _renderEdit: function() { return <div/> },
     _renderNormal: function() {
@@ -36,4 +40,6 @@ var SubBlock = React.createClass({
     },
 
     _onChange: function() {}
-})
+});
+
+module.exports = SubBlock;

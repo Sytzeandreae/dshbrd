@@ -17,7 +17,8 @@ class Config(object):
     REGISTERED_BLOCKS = [
         'reddit',
         'rss',
-        'newrelic'
+        'newrelic',
+        'xkcd'
     ]
 
 

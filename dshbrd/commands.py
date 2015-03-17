@@ -61,9 +61,12 @@ def initauth(noinput):
 def initblocks():
     from dshbrd.api.block.models import Block
     from dshbrd.api.block.rss.models import RssBlock
+    from dshbrd.api.block.xkcd.models import XkcdBlock
 
     Block.create(name='rss', blocktype='rss', user_id=1, position=1)
+    Block.create(name='xkcd', blocktype='xkcd', user_id=1, position=2)
     RssBlock.create(block_id=1, feed_url='https://news.ycombinator.com/rss')
+    XkcdBlock.create(block_id=2)
 
 
 def createdb(noinput=False):

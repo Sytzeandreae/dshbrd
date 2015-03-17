@@ -28,3 +28,8 @@ class BaseBlockModel(CRUDMixin):
     @declared_attr
     def block(self):
         return db.relationship('Block')
+
+    @classmethod
+    def check_user(cls, block_id, user_id):
+        block = cls.query.filter_by(bock_id=block_id)[0]
+        return block.user_id == user_id

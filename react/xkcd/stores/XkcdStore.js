@@ -2,8 +2,8 @@ var AppDispatcher = require('../../dshbrd/dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var _ = require('underscore');
 
-var RssApi = require('../utils/RssApi');
-var RssConstants = require('../constants/RssConstants');
+var XkcdApi = require('../utils/XkcdApi');
+var XkcdConstants = require('../constants/XkcdConstants');
 
 _data = {};
 
@@ -11,34 +11,33 @@ function setData(data) {
     _data = data;
 }
 
-var RssStore = _.extend({}, EventEmitter.prototype, {
+var XkcdStore = _.extend({}, EventEmitter.prototype, {
     getData: function() {
-        return _data; 
+        return _data;
     },
 
     fetchData: function(id) {
-        RssApi.getData(id); 
+        XkcdApi.fetchData(id);
     },
 
     emitChange: function() {
-        this.emit('change');         
+        this.emit('change');
     },
 
     addChangeListener: function(callback) {
         this.on('change', callback);
     },
 
-    removeChangeListener: function(callback){
-        this.removeChangeListener('change', callback);
+    removeChangeListener: function(callback) {
+        this.removeEventListener('change', callback);
     }
 });
 
 AppDispatcher.register(function(payload) {
     var action = payload.action;
-    var data = data;
 
     switch (action.actionType) {
-        case RssConstants.RECEIVE_DATA:
+        case XkcdConstants.RECEIVE_DATA:
             setData(action.data);
             break;
 
@@ -46,9 +45,9 @@ AppDispatcher.register(function(payload) {
             return true;
     }
 
-    RssStore.emitChange();
+    XkcdStore.emitChange();
 
     return true;
 });
 
-module.exports = RssStore;
+module.exports = XkcdStore;

@@ -1,30 +1,34 @@
 {
-    "name": "dshbrd.io",
-    "version": "0.0.1",
-    "description": "Front-end interface for dshbrd.io",
-    "main": "react/app.js",
-    "dependencies": {
-        "flux": "^2.0.1",
-        "react": "^0.12.0",
-        "underscore": "^1.7.0",
-        "jquery": "^2.1.1"
-    },
-    "devDependencies": {
-        "browserify": "^6.2.0",
-        "envify": "^3.0.0",
-        "reactify": "^0.15.2",
-        "uglify-js": "~2.4.15",
-        "watchify": "^2.1.1"
-    },
-    "scripts": {
-        "start": "watchify -o dshbrd/static/js/bundle.js -v -d .",
-        "build": "browserify . | uglifyjs -cm > dshbrd/static/js/bundle.min.js"
-    },
-    "author": "Sytze Andreae",
-    "browserify": {
-        "transform": [
-            "reactify",
-            "envify"
-        ]
-    }
+  "name": "dshbrd.io",
+  "version": "0.0.1",
+  "description": "Front-end interface for dshbrd.io",
+  "main": "react/app.js",
+  "dependencies": {
+    "flux": "^2.0.1",
+    "react": "^0.12.0",
+    "underscore": "^1.7.0",
+    "jquery": "^2.1.1"
+  },
+  "devDependencies": {
+    "browserify": "^6.2.0",
+    "classnames": "^1.2.0",
+    "envify": "^3.0.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-sass": "^0.18.1",
+    "reactify": "^0.15.2",
+    "uglify-js": "~2.4.15",
+    "watchify": "^2.1.1"
+  },
+  "scripts": {
+    "start": "watchify -o dshbrd/static/js/bundle.js -v -d .",
+    "build": "browserify . | uglifyjs -cm > dshbrd/static/js/bundle.min.js"
+  },
+  "author": "Sytze Andreae",
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  }
 }

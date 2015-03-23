@@ -1,0 +1,15 @@
+{
+  "name": "dshbrd",
+  "version": "0.0.0",
+  "authors": [
+    "Sytze Andreae <sytze@van-ons.nl>"
+  ],
+  "private": true,
+  "dependencies": {
+    "foundation": "zurb/bower-foundation#5.5.1",
+    "html5shiv": "~3.7.2"
+  },
+  "devDependencies": {
+    "compass-mixins": "master"
+  }
+}

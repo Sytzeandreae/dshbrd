@@ -66,3 +66,5 @@ bundle.min.js
 
 # swap files
 *.swp
+.sass-cache/
+bower_components/

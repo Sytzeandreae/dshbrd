@@ -1,0 +1,14 @@
+.block {
+    height: 400px;
+    max-height: 400px;
+
+    .inner-block {
+        overflow: auto;
+        height:352px;
+        max-height: 363px;
+        background: #ccc;
+        padding: 10px;
+    }
+}
+
+

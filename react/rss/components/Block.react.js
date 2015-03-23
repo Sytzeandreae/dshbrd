@@ -1,9 +1,12 @@
 var React = require('react');
 var RssStore = require('../stores/RssStore');
+var BlockMixin = require('../../dshbrd/utils/mixins/BlockMixin');
 var Item = require('./Item.react');
 var $ = require('jquery');
 
 var SubBlock = React.createClass({
+    mixins: [BlockMixin],
+
     getInitialState: function() {
         return {
             'rss': RssStore.getData()
@@ -25,25 +28,17 @@ var SubBlock = React.createClass({
         RssStore.removeChangeListener(this._onChange);
     },
 
-    render: function() {
-        if (this.props.edit) {
-            return this._renderEdit();
-        } else {
-            return this._renderNormal();
-        }
-    },
-
     _renderEdit: function() {return <div />},
     _renderNormal: function() {
         if (this.state.rss.rss == undefined) {
-            return <div />
+            return <ul />
         } else {
             return (
-                <div>
+                <ul>
                     {this.state.rss.rss.channel.item.map(function(item, index) {
                         return <Item item={item} key={index} />
                     })}
-                </div>
+                </ul>
             )
         }
     },

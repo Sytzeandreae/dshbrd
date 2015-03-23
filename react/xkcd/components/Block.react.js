@@ -4,6 +4,8 @@ var BlockMixin = require('../../dshbrd/utils/mixins/BlockMixin');
 var $ = require('jquery');
 
 var SubBlock = React.createClass({
+    mixins: [BlockMixin],
+
     getInitialState: function() {
         return {
             'xkcd': XkcdStore.getData()
@@ -28,14 +30,11 @@ var SubBlock = React.createClass({
     componentWillUnmount: function() {
         XkcdStore.removeChangeListener(this._onChange);
     },
-    render: function() {
-        return <div dangerouslySetInnerHTML={{__html: this.state.xkcd.description}} />
-    },
 
     _renderEdit: function() { return <div/> },
     _renderNormal: function() {
         return (
-            <div></div>
+            <div dangerouslySetInnerHTML={{__html: this.state.xkcd.description}} />
         )
     },
 

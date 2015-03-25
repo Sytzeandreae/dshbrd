@@ -7,7 +7,8 @@
   "private": true,
   "dependencies": {
     "foundation": "zurb/bower-foundation#5.5.1",
-    "html5shiv": "~3.7.2"
+    "html5shiv": "~3.7.2",
+    "materialize": "~0.95.3"
   },
   "devDependencies": {
     "compass-mixins": "master"

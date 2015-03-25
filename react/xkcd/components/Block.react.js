@@ -8,7 +8,8 @@ var SubBlock = React.createClass({
 
     getInitialState: function() {
         return {
-            'xkcd': XkcdStore.getData()
+            'xkcd': XkcdStore.getData(),
+            'loading': true
         }
     },
 
@@ -20,7 +21,8 @@ var SubBlock = React.createClass({
             function(result) {
                 if (this.isMounted()) {
                     this.setState({
-                        'xkcd': result
+                        'xkcd': result,
+                        'loading': false
                     });
                 }
             }.bind(this));
@@ -34,7 +36,11 @@ var SubBlock = React.createClass({
     _renderEdit: function() { return <div/> },
     _renderNormal: function() {
         return (
-            <div dangerouslySetInnerHTML={{__html: this.state.xkcd.description}} />
+            <div className={"valign-wrapper"}>
+                <div className={"valign centerized"}>
+                    <img src={this.state.xkcd.img.url} alt={this.state.xkcd.img.alt} title={this.state.xkcd.img.title}/>
+                </div>
+            </div>
         )
     },
 

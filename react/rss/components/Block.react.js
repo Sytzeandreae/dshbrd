@@ -9,7 +9,8 @@ var SubBlock = React.createClass({
 
     getInitialState: function() {
         return {
-            'rss': RssStore.getData()
+            'rss': RssStore.getData(),
+            'loading': true
         };
     },
 
@@ -17,7 +18,8 @@ var SubBlock = React.createClass({
         $.get('http://127.0.0.1:5000/api/v1/block/rss/1', function(result) {
             if (this.isMounted()) {
                 this.setState({
-                    'rss': result
+                    'rss': result,
+                    'loading': false
                 });
             }
         }.bind(this));
@@ -28,17 +30,33 @@ var SubBlock = React.createClass({
         RssStore.removeChangeListener(this._onChange);
     },
 
-    _renderEdit: function() {return <div />},
+    _renderEdit: function() {
+        return (
+            <form>
+                <fieldset>
+                    <legend>Edit</legend>
+                    <input type={"hidden"} value={this.props.block_specifics.id} name={"id"} />
+                    <label>
+                        Feed url                            
+                        <input type={"text"} defaultValue={this.props.block_specifics.feed_url} name={"feed_url"} />
+                    </label>
+                    <a className={"waves-effect waves-light btn"} onClick={this._save} href={"#"}>Save</a>
+                </fieldset>
+
+            </form> 
+        )
+    },
+
     _renderNormal: function() {
         if (this.state.rss.rss == undefined) {
             return <ul />
         } else {
             return (
-                <ul>
+                <div className={"collection"}>
                     {this.state.rss.rss.channel.item.map(function(item, index) {
                         return <Item item={item} key={index} />
                     })}
-                </ul>
+                </div>
             )
         }
     },
@@ -46,9 +64,12 @@ var SubBlock = React.createClass({
         RssStore.fetchData(this.props.block_specifics.id);
     },
 
-    _onChange: function() {
+    _onChange: function(e) {
         this.setState(RssStore.getData());
-    }
+        return false;
+    },
+
+    _save: function() {}
 });
 
 module.exports = SubBlock;

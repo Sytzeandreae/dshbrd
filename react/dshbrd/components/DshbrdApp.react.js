@@ -27,7 +27,7 @@ var DshbrdApp = React.createClass({
         if (this.state.blocks.length > 0) {
             var nrBlocks = this.state.blocks.length;
             return (
-                <div className={"row full-width"}>
+                <div className={"row"}>
                     {this.state.blocks.map(function(block, index) {
                         return (<Block key={index} block={block} last={nrBlocks == index+1}/>)
                     })}

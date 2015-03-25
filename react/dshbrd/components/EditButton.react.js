@@ -7,12 +7,16 @@ var EditButton = React.createClass({
     
     _renderNormal: function() {
         return (
-            <button onClick={this.props.onClick}>Edit</button>
+            <a className={"waves-effect waves-light btn red absolute"} onClick={this.props.onClick}>
+                <i className={"mdi-editor-mode-edit tiny"}></i>
+            </a>
         )
     },
     _renderEdit: function() {
         return (
-            <button onClick={this.props.onClick}>Done</button>
+            <a className={"waves-effect waves-light btn absolute"} onClick={this.props.onClick}>
+                <i className={"mdi-action-done tiny"}></i>
+            </a>
         )
     }
 });

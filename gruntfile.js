@@ -11,7 +11,8 @@ module.exports = function(grunt) {
       options: {
         includePaths: [
           './bower_components/foundation/scss',
-          './bower_components/compass-mixins/lib'
+          './bower_components/compass-mixins/lib',
+          './bower_components/materialize/sass'
         ]
       },
       dev: {

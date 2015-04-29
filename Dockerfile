@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 
 RUN apt-get update -y
 RUN apt-get install -y git-core python-all-dev python-pip python-virtualenv nodejs \
-    libpq-dev
+    libpq-dev npm
 
 ADD . /src
 WORKDIR /src

@@ -1,8 +1,17 @@
 FROM ubuntu:14.04
 
 RUN apt-get update -y
-RUN apt-get install -y git-core python-all-dev python-pip python-virtualenv nodejs \
-    libpq-dev npm
+RUN apt-get install -y git-core python-all-dev python-pip python-virtualenv \
+    libpq-dev wget build-essential openssl libssl-dev pkg-config
+
+RUN wget http://nodejs.org/dist/latest/node-v0.12.2.tar.gz
+RUN tar xvf node-v*
+RUN cd node-v*
+RUN ./configure
+RUN make
+RUN make install
+RUN cd ..
+RUN rm -rf node-v*
 
 ADD . /src
 WORKDIR /src

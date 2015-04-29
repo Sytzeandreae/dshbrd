@@ -4,12 +4,13 @@ from flask.ext.script import Manager
 from flask.ext.migrate import Migrate, MigrateCommand
 
 from dshbrd import create_app
+from dshbrd import db
 
 app = create_app()
 
 manager = Manager(app)
 
-migrate = Migrate(app, app.db)
+migrate = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
 
 

@@ -1,7 +1,8 @@
 FROM ubuntu:14.04
 
 RUN apt-get update -y
-RUN apt-get install -y git-core python-all-dev python-pip python-virtualenv nodejs
+RUN apt-get install -y git-core python-all-dev python-pip python-virtualenv nodejs \
+    libqp-dev
 
 ADD . /src
 WORKDIR /src

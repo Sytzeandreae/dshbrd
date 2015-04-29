@@ -1,5 +1,6 @@
 @import "normalize";
-
+@import "materialize";
+@import "flex";
 
 /**
  * Sections
@@ -14,5 +15,3 @@
 @import "global/variables";
 @import "global/foundation";
 @import "global/global";
-
-@import "materialize";

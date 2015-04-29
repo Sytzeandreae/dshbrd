@@ -27,10 +27,22 @@ var DshbrdApp = React.createClass({
         if (this.state.blocks.length > 0) {
             var nrBlocks = this.state.blocks.length;
             return (
-                <div className={"row"}>
+                <div className={"flex-container"}>
                     {this.state.blocks.map(function(block, index) {
                         return (<Block key={index} block={block} last={nrBlocks == index+1}/>)
                     })}
+                    <div className={"fixed-action-btn"} style={{bottom: '45px', right: '24px;'}}>
+                        <a className={"btn-floating btn-large red"}>
+                            <i className={"large mdi-action-view-headline"}></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a className={"btn-floating red"}>
+                                    <i className={"large mdi-ditor-insert-chart"}></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div> 
             )
         } else {

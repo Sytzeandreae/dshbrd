@@ -22,7 +22,6 @@ var Block = React.createClass({
             's3': true,
         });
         return (
-            <div className={classes}>
                 <div className={"z-depth-1 block"}>
                     <h3>{this.props.block.block_name}</h3>
                     <EditButton button={true} onClick={this._toggleEdit} edit={this.state.edit}/>
@@ -30,7 +29,6 @@ var Block = React.createClass({
                         <SubBlock block_specifics={this.props.block.block_specifics} edit={this.state.edit} />
                     </div>
                 </div>
-            </div>
         )
     },
 

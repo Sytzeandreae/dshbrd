@@ -1,5 +1,10 @@
 #app {
+    @include flexbox();
+    @include flex-flow(row wrap);
     padding: 20px;
     background: #eee;
     height: 100%;
+    width:100%;
 }
+
+

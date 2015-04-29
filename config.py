@@ -33,10 +33,11 @@ class StagingConfig(Config):
     DEBUG = True
 
     SQLALCHEMY_DATABASE_URI = \
-        '{engine}://{username}:{password}@{host}/{db}'.format(
-            engine=environ.get('DB_ENGINE'),
-            username=environ.get('DB_USER'),
-            password=environ.get('DB_PASS'),
-            host=environ.get('DB_HOST'),
-            db=environ.get('DB_NAME')
+        '{engine}://{username}:{password}@{host}:{port}/{db}'.format(
+            engine='postgresql',
+            username=environ.get('RDS_USERNAME'),
+            password=environ.get('RDS_PASSWORD'),
+            host=environ.get('RDS_HOSTNAME'),
+            db=environ.get('RDS_DB_NAME'),
+            port=environ.get('RDS_PORT')
         )

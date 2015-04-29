@@ -4,18 +4,9 @@ RUN apt-get update -y
 RUN apt-get install -y git-core python-all-dev python-pip python-virtualenv \
     libpq-dev wget build-essential openssl libssl-dev pkg-config
 
-RUN \
-    cd /tmp && \
-    wget http://nodejs.org/dist/node-v0.12.2.tar.gz && \
-    tar xvzf node-v* && \
-    rm -f *.tar.gz && \
-    cd node-v* && \
-    ./configure && \
-    CXX="g++ -Wno-unused-local-typedefs" make && \
-    CSS="g++ -Wno-unused-local-typedefs" make install && \
-    cd /tmp && \
-    rm -rf /tmp/node-v* && \
-    cd ..
+RUN add-apt-repository -y ppa:chris-lea/node.js
+RUN apt-get update
+RUN apt-get -y install nodejs
 
 ADD . /src
 WORKDIR /src

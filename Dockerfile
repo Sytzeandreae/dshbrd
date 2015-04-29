@@ -1,5 +1,6 @@
 FROM ubuntu:14.04
 
+RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update -y
 RUN apt-get install -y git-core python-all-dev python-pip python-virtualenv \
     libpq-dev wget build-essential openssl libssl-dev pkg-config

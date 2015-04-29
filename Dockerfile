@@ -4,14 +4,18 @@ RUN apt-get update -y
 RUN apt-get install -y git-core python-all-dev python-pip python-virtualenv \
     libpq-dev wget build-essential openssl libssl-dev pkg-config
 
-RUN wget http://nodejs.org/dist/latest/node-v0.12.2.tar.gz
-RUN tar xvf node-v*
-RUN cd node-v*
-RUN ./configure
-RUN make
-RUN make install
-RUN cd ..
-RUN rm -rf node-v*
+RUN \
+    cd /tmp && \
+    wget http://nodejs.org/dist/node-v0.12.2.tar.gz && \
+    tar xvzf node-v* && \
+    rm -f *.tar.gz && \
+    cd node-v* && \
+    ./configure && \
+    CXX="g++ -Wno-unused-local-typedefs" make && \
+    CSS="g++ -Wno-unused-local-typedefs" make install && \
+    cd /tmp && \
+    rm -rf /tmp/node-v* && \
+    cd ..
 
 ADD . /src
 WORKDIR /src

@@ -12,7 +12,7 @@ RUN npm install bower
 RUN bower install
 RUN browserify react/app.js | uglifyjs > dshbrd/static/js/bundle.min.js
 RUN grunt sass
-RUN python app.py db upgrade
+#RUN python app.py db upgrade
 
 
 EXPOSE 80

@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 
 RUN apt-get update
 RUN apt-get install -y git-core python-all-dev python-pip python-virtualenv \
-    libpq-dev wget build-essential 
+    libpq-dev wget build-essential ruby ruby-dev ruby-bundler
 
 ADD . /src
 
@@ -14,8 +14,13 @@ RUN rm -rf node-v* *.tar.gz
 
 WORKDIR /src
 RUN pip install -r requirements.txt
+RUN npm install -g bower
+RUN npm install -g grunt
+RUN gem install sass -v 3.4.4
+RUN gem install compass -v 1.0.1
+RUN gem install zurb-foundation -v 4.3.2 
+RUN gem install foundation -v 1.0.4
 RUN npm install
-RUN npm install bower
 RUN bower install
 RUN browserify react/app.js | uglifyjs > dshbrd/static/js/bundle.min.js
 RUN grunt sass

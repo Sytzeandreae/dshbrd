@@ -1,5 +1,6 @@
 FROM ubuntu:14.04
 
+RUN apt-get update
 RUN apt-get install -y git-core python-all-dev python-pip python-virtualenv \
     libpq-dev wget build-essential 
 

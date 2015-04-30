@@ -21,7 +21,7 @@ RUN gem install compass -v 1.0.1
 RUN gem install zurb-foundation -v 4.3.2 
 RUN gem install foundation -v 1.0.4
 RUN npm install
-RUN bower install
+RUN bower install --allow-root
 RUN browserify react/app.js | uglifyjs > dshbrd/static/js/bundle.min.js
 RUN grunt sass
 #RUN python app.py db upgrade

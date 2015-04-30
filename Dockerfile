@@ -15,7 +15,7 @@ RUN rm -rf node-v* *.tar.gz
 WORKDIR /src
 RUN pip install -r requirements.txt
 RUN npm install -g bower
-RUN npm install -g grunt
+RUN npm install -g grunt-cli
 RUN npm install -g browserify
 RUN npm install -g uglifyjs
 RUN gem install sass -v 3.4.4
